@@ -7,7 +7,7 @@
 ###
 
 ```yaml
-discovery.seed_providers: conf-apollo
+discovery.zen.hosts_provider: conf-apollo
 
 # apollo: the apollo.meta of the config
 discovery.conf.apollo.meta:

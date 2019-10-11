@@ -1,7 +1,8 @@
-package com.service;
+package com.es_plugins.service;
 
 import com.ctrip.framework.apollo.Config;
 import com.ctrip.framework.apollo.ConfigService;
+import com.es_plugins.util.ConfUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.elasticsearch.Version;
 import org.elasticsearch.cluster.node.DiscoveryNode;
@@ -9,7 +10,6 @@ import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.common.transport.TransportAddress;
 
 import java.net.InetSocketAddress;
-import java.security.PrivilegedAction;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.regex.Pattern;
@@ -35,12 +35,7 @@ public class ApolloConfServiceImpl implements ConfService {
     @Override
     public List<DiscoveryNode> getSeedAddresses() {
         AtomicInteger index = new AtomicInteger();
-        String value = doPrivileged(new PrivilegedAction<String>() {
-            @Override
-            public String run() {
-                return loadEsSeed();
-            }
-        });
+        String value = ConfUtil.doPrivileged(this::loadEsSeed);
 
         return Stream.of(value)
                 .flatMap(compile::splitAsStream)
@@ -55,7 +50,7 @@ public class ApolloConfServiceImpl implements ConfService {
                 new InetSocketAddress(arr[0].trim(), Integer.parseInt(arr[1].trim()))
         );
         return new DiscoveryNode(
-                "http-provider-" + (index.getAndIncrement()),
+                "conf-apollo-provider-" + (index.getAndIncrement()),
                 address,
                 emptyMap(),
                 emptySet(),
@@ -64,7 +59,7 @@ public class ApolloConfServiceImpl implements ConfService {
     }
 
     private String loadEsSeed() {
-        Config config = ConfigService.getConfig(ConfService.CONF_APOLLO_NS_SETTING.get(settings));
-        return config.getProperty(ConfService.CONF_APOLLO_KEY_SETTING.get(settings), null);
+        Config config = ConfigService.getConfig(ConfUtil.CONF_APOLLO_NS_SETTING.get(settings));
+        return config.getProperty(ConfUtil.CONF_APOLLO_KEY_SETTING.get(settings), null);
     }
 }

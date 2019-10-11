@@ -1,6 +1,7 @@
 package com.es_plugins;
 
-import com.service.ConfService;
+import com.es_plugins.service.ConfService;
+import com.es_plugins.util.ConfUtil;
 import org.elasticsearch.action.admin.cluster.state.ClusterStateResponse;
 import org.elasticsearch.cluster.node.DiscoveryNode;
 import org.elasticsearch.common.settings.Settings;
@@ -33,8 +34,11 @@ public class ApolloConfBasedDiscoveryPluginTests extends ESIntegTestCase {
     protected Settings nodeSettings(int nodeOrdinal) {
         return Settings.builder()
                 .put(super.nodeSettings(nodeOrdinal))
-                .put("discovery.zen.hosts_provider", "http")
-                .put(ConfService.CONF_APOLLO_NS_SETTING.getKey(), "http://127.0.0.1:18000")
+                .put("discovery.zen.hosts_provider", "conf-apollo")
+                .put(ConfUtil.CONF_APOLLO_APP_ID_SETTING.getKey(), "9999")
+                .put(ConfUtil.CONF_APOLLO_META_SETTING.getKey(), "http://127.0.0.1:9999")
+                .put(ConfUtil.CONF_APOLLO_NS_SETTING.getKey(), "public.ess")
+                .put(ConfUtil.CONF_APOLLO_KEY_SETTING.getKey(), "ess_seed_list")
                 .build();
     }
 
