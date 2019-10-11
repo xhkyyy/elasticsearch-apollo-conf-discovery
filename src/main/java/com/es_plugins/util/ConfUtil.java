@@ -1,5 +1,9 @@
 package com.es_plugins.util;
 
+import com.alibaba.fastjson.JSON;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.http.client.fluent.Request;
+import org.apache.http.client.fluent.Response;
 import org.elasticsearch.SpecialPermission;
 import org.elasticsearch.common.settings.Setting;
 
@@ -35,5 +39,25 @@ public class ConfUtil {
         return AccessController.doPrivileged(operation);
     }
 
+    public static String getProperty(
+            String configServerUrl,
+            String appId,
+            String namespace,
+            String key
+
+    ) {
+        String url = String.format("%s/configs/%s/default/%s?releaseKey=&ip=", configServerUrl, appId, namespace);
+        try {
+            Response res = Request.Get(url).execute();
+            return StringUtils.trim(
+                    JSON.parseObject(StringUtils.trim(res.returnContent().asString()))
+                            .getJSONObject("configurations")
+                            .getString(key)
+            );
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
 }

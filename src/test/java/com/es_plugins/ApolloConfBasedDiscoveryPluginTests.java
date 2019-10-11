@@ -1,6 +1,6 @@
 package com.es_plugins;
 
-import com.es_plugins.service.ConfService;
+import com.service.ConfService;
 import com.es_plugins.util.ConfUtil;
 import org.elasticsearch.action.admin.cluster.state.ClusterStateResponse;
 import org.elasticsearch.cluster.node.DiscoveryNode;

@@ -1,4 +1,4 @@
-package com.es_plugins.service;
+package com.service;
 
 import org.elasticsearch.cluster.node.DiscoveryNode;
 

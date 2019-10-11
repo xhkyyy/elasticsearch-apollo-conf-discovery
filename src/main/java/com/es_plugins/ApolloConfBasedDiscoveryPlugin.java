@@ -1,9 +1,8 @@
 package com.es_plugins;
 
-import com.es_plugins.service.ApolloConfServiceImpl;
-import com.es_plugins.service.ConfService;
 import com.es_plugins.util.ConfUtil;
-import org.apache.commons.lang3.StringUtils;
+import com.service.ApolloConfServiceImpl;
+import com.service.ConfService;
 import org.elasticsearch.common.network.NetworkService;
 import org.elasticsearch.common.settings.Setting;
 import org.elasticsearch.common.settings.Settings;
@@ -12,7 +11,6 @@ import org.elasticsearch.plugins.DiscoveryPlugin;
 import org.elasticsearch.plugins.Plugin;
 import org.elasticsearch.transport.TransportService;
 
-import java.security.PrivilegedAction;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -30,11 +28,6 @@ public class ApolloConfBasedDiscoveryPlugin extends Plugin implements DiscoveryP
 
     public ApolloConfBasedDiscoveryPlugin(Settings settings) {
         this.settings = settings;
-        ConfUtil.doPrivileged((PrivilegedAction<String>) () -> {
-            initProperty(settings);
-            return null;
-        });
-
     }
 
     @Override
@@ -60,16 +53,5 @@ public class ApolloConfBasedDiscoveryPlugin extends Plugin implements DiscoveryP
         return Collections.singletonMap(
                 CONF_KEY, () -> new ApolloConfBasedSeedHostsProvider(settings, createHttpService())
         );
-    }
-
-    private void initProperty(Settings settings) {
-        setProperty(ConfUtil.CONF_APOLLO_APP_ID_SETTING, settings, ConfUtil.APOLLO_PROPERTY_NAME_APP_ID);
-        setProperty(ConfUtil.CONF_APOLLO_META_SETTING, settings, ConfUtil.APOLLO_PROPERTY_NAME_META);
-    }
-
-    private void setProperty(Setting<String> pluginSettings, Settings settings, String propertyName) {
-        if (StringUtils.isBlank(System.getProperty(propertyName))) {
-            System.setProperty(propertyName, pluginSettings.get(settings));
-        }
     }
 }

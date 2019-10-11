@@ -1,6 +1,6 @@
 package com.es_plugins;
 
-import com.es_plugins.service.ConfService;
+import com.service.ConfService;
 import org.elasticsearch.cluster.node.DiscoveryNode;
 import org.elasticsearch.common.component.AbstractComponent;
 import org.elasticsearch.common.settings.Settings;
