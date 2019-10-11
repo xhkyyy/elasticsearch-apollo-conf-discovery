@@ -22,4 +22,5 @@ discovery.conf.apollo.namespace:
 discovery.conf.apollo.key: 
 ```
 
-bin/elasticsearch-plugin --verbose install  https://github.com/xhkyyy/elasticsearch-apollo-conf-discovery/releases/download/v6.2.2/elasticsearch-apollo-conf-discovery-plugin-v6.2.2.zip
+bin/elasticsearch-plugin --verbose install https://github.com/xhkyyy/elasticsearch-apollo-conf-discovery/releases/download/v6.2.2/elasticsearch-apollo-conf-discovery-plugin-v6.2.2.zip
+
