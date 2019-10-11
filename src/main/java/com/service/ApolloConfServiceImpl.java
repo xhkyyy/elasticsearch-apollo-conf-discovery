@@ -1,7 +1,5 @@
-package com.es_plugins.service;
+package com.service;
 
-import com.ctrip.framework.apollo.Config;
-import com.ctrip.framework.apollo.ConfigService;
 import com.es_plugins.util.ConfUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.elasticsearch.Version;
@@ -35,8 +33,12 @@ public class ApolloConfServiceImpl implements ConfService {
     @Override
     public List<DiscoveryNode> getSeedAddresses() {
         AtomicInteger index = new AtomicInteger();
-        String value = ConfUtil.doPrivileged(this::loadEsSeed);
-
+        String value = ConfUtil.doPrivileged(() -> ConfUtil.getProperty(
+                ConfUtil.CONF_APOLLO_META_SETTING.get(settings),
+                ConfUtil.CONF_APOLLO_APP_ID_SETTING.get(settings),
+                ConfUtil.CONF_APOLLO_NS_SETTING.get(settings),
+                ConfUtil.CONF_APOLLO_KEY_SETTING.get(settings)
+        ));
         return Stream.of(value)
                 .flatMap(compile::splitAsStream)
                 .filter(StringUtils::isNotBlank)
@@ -56,10 +58,5 @@ public class ApolloConfServiceImpl implements ConfService {
                 emptySet(),
                 Version.CURRENT.minimumCompatibilityVersion()
         );
-    }
-
-    private String loadEsSeed() {
-        Config config = ConfigService.getConfig(ConfUtil.CONF_APOLLO_NS_SETTING.get(settings));
-        return config.getProperty(ConfUtil.CONF_APOLLO_KEY_SETTING.get(settings), null);
     }
 }
