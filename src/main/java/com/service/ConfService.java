@@ -21,6 +21,15 @@ public interface ConfService {
         return AccessController.doPrivileged(operation);
     }
 
+
+    Setting<String> CONF_APOLLO_APP_ID_SETTING = new Setting<>("discovery.conf.apollo.app_id", "public.ess",
+            Function.identity(), Setting.Property.NodeScope);
+
+
+    Setting<String> CONF_APOLLO_META_SETTING = new Setting<>("discovery.conf.apollo.meta", "public.ess",
+            Function.identity(), Setting.Property.NodeScope);
+
+
     Setting<String> CONF_APOLLO_NS_SETTING = new Setting<>("discovery.conf.apollo.namespace", "public.ess",
             Function.identity(), Setting.Property.NodeScope);
 
