@@ -1,0 +1,2 @@
+elasticsearch-apollo-conf-discovery-plugin
+Copyright 2009-2017 elasticsearch-apollo-conf-discovery-plugin
