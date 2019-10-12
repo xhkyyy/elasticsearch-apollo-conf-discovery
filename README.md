@@ -1,5 +1,7 @@
 # elasticsearch-apollo-conf-discovery
 
+> branch: 6.2.x
+
 ### Prerequisites
 
 [Apollo configuration management system](https://github.com/ctripcorp/apollo)
