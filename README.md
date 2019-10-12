@@ -1,4 +1,5 @@
-# elasticsearch-apollo-conf-discovery
+elasticsearch-apollo-conf-discovery
+=============================
 
 The elasticsearch-apollo-conf-discovery plugin uses the Apollo Configuration to identify the addresses of seed hosts.
 
