@@ -1,5 +1,7 @@
 # elasticsearch-apollo-conf-discovery
 
+The elasticsearch-apollo-conf-discovery plugin uses the Apollo Configuration to identify the addresses of seed hosts.
+
 Versions
 --------
 
@@ -19,9 +21,8 @@ How To Use
 
 installation:
 
-
-```
-bin/elasticsearch-plugin --verbose install https://github.com/xhkyyy/elasticsearch-apollo-conf-discovery/releases/download/v6.2.2/elasticsearch-apollo-conf-discovery-plugin-v6.2.2.zip
+```sh
+bin/elasticsearch-plugin --verbose install [url]
 ```
 
 elasticsearch.yml:
@@ -36,10 +37,10 @@ discovery.conf.apollo.meta:
 discovery.conf.apollo.app_id:
 
 # apollo: the namespace of the config
-discovery.conf.apollo.namespace: 
+discovery.conf.apollo.namespace:
 
 # apollo: the property name
-discovery.conf.apollo.key: 
+discovery.conf.apollo.key:
 ```
 
 Test
@@ -51,9 +52,7 @@ Build
 --------
 
 ```
-git clone https://github.com/xhkyyy/elasticsearch-apollo-conf-discovery.git
-$ cd elasticsearch-apollo-conf-discovery/
-$ ./gradlew build
+./gradlew build
 ```
 
 
