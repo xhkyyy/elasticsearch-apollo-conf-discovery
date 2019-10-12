@@ -1,7 +1,5 @@
 # elasticsearch-apollo-conf-discovery
 
-> branch (master) : 7.3.x
-
 Versions
 --------
 
