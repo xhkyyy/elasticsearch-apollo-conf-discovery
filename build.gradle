@@ -1,6 +1,6 @@
 buildscript {
     dependencies {
-        classpath "org.elasticsearch.gradle:build-tools:6.2.2"
+        classpath "org.elasticsearch.gradle:build-tools:7.3.2"
     }
 }
 
@@ -17,20 +17,21 @@ configurations.all {
 }
 
 
+// apply plugin: 'elasticsearch.testclusters'
 apply plugin: 'elasticsearch.esplugin'
-apply plugin: 'idea'
+
 
 esplugin {
-    name 'elasticsearch-apollo-conf-discovery-plugin'
-    classname 'com.es_plugins.ApolloConfBasedDiscoveryPlugin'
     description 'The elasticsearch-apollo-conf-discovery plugin uses the Apollo Configuration to identify the addresses of seed hosts.'
+    name 'elasticsearch-apollo-conf-discovery'
+    classname 'com.es_plugins.ApolloConfBasedDiscoveryPlugin'
 }
 
 group 'com.es-plugins'
 version '1.0-SNAPSHOT'
 
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
+sourceCompatibility = 12
+targetCompatibility = 12
 
 repositories {
     mavenCentral()
@@ -40,11 +41,11 @@ dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
     compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.28'
     compile group: 'commons-logging', name: 'commons-logging', version: '1.1.1'
-    compile group: 'org.elasticsearch', name: 'elasticsearch', version: '6.2.2'
-    compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.9'
     compile group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.10'
     compile group: 'org.apache.httpcomponents', name: 'httpcore', version: '4.4.12'
     compile group: 'org.apache.httpcomponents', name: 'fluent-hc', version: '4.5.10'
+    compile group: 'org.elasticsearch', name: 'elasticsearch', version: '7.3.2'
+    compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.9'
     compile group: 'com.alibaba', name: 'fastjson', version: '1.2.62'
 }
 
@@ -57,8 +58,4 @@ thirdPartyAudit.enabled = false
 forbiddenApisTest.enabled = false
 forbiddenApisMain.enabled = false
 loggerUsageCheck.enabled = false
-// testingConventions.enabled = false
-//unitTest.enabled = false
-integTest.enabled = false
-test.enabled = false
-
+testingConventions.enabled = false

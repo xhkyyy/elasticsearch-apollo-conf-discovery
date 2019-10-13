@@ -1,28 +1,24 @@
 package com.es_plugins;
 
 import com.service.ConfService;
-import org.elasticsearch.cluster.node.DiscoveryNode;
-import org.elasticsearch.common.component.AbstractComponent;
-import org.elasticsearch.common.settings.Settings;
-import org.elasticsearch.discovery.zen.UnicastHostsProvider;
+import org.elasticsearch.common.transport.TransportAddress;
+import org.elasticsearch.discovery.SeedHostsProvider;
 
 import java.util.List;
 
 /**
  * @author xhkyyy
  */
-public class ApolloConfBasedSeedHostsProvider extends AbstractComponent implements UnicastHostsProvider {
+public class ApolloConfBasedSeedHostsProvider implements SeedHostsProvider {
 
-    private ConfService confService;
+    private final ConfService confService;
 
-    ApolloConfBasedSeedHostsProvider(Settings settings, ConfService confService) {
-        super(settings);
+    ApolloConfBasedSeedHostsProvider(ConfService confService) {
         this.confService = confService;
     }
 
-
     @Override
-    public List<DiscoveryNode> buildDynamicNodes() {
+    public List<TransportAddress> getSeedAddresses(HostsResolver hostsResolver) {
         return confService.getSeedAddresses();
     }
 }

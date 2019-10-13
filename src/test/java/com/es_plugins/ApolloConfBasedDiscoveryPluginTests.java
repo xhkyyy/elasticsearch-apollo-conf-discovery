@@ -1,10 +1,11 @@
 package com.es_plugins;
 
-import com.service.ConfService;
 import com.es_plugins.util.ConfUtil;
+import com.service.ConfService;
 import org.elasticsearch.action.admin.cluster.state.ClusterStateResponse;
 import org.elasticsearch.cluster.node.DiscoveryNode;
 import org.elasticsearch.common.settings.Settings;
+import org.elasticsearch.common.transport.TransportAddress;
 import org.elasticsearch.plugins.Plugin;
 import org.elasticsearch.test.ESIntegTestCase;
 import org.elasticsearch.transport.TransportService;
@@ -17,6 +18,7 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 import static java.util.Collections.singletonList;
+import static org.elasticsearch.discovery.DiscoveryModule.DISCOVERY_SEED_PROVIDERS_SETTING;
 import static org.elasticsearch.test.hamcrest.ElasticsearchAssertions.assertNoTimeout;
 
 @ESIntegTestCase.ClusterScope(supportsDedicatedMasters = false, numDataNodes = 0, numClientNodes = 0)
@@ -34,7 +36,7 @@ public class ApolloConfBasedDiscoveryPluginTests extends ESIntegTestCase {
     protected Settings nodeSettings(int nodeOrdinal) {
         return Settings.builder()
                 .put(super.nodeSettings(nodeOrdinal))
-                .put("discovery.zen.hosts_provider", "conf-apollo")
+                .put(DISCOVERY_SEED_PROVIDERS_SETTING.getKey(), "conf-apollo")
                 .put(ConfUtil.CONF_APOLLO_APP_ID_SETTING.getKey(), "9999")
                 .put(ConfUtil.CONF_APOLLO_META_SETTING.getKey(), "http://127.0.0.1:9999")
                 .put(ConfUtil.CONF_APOLLO_NS_SETTING.getKey(), "public.ess")
@@ -96,9 +98,9 @@ public class ApolloConfBasedDiscoveryPluginTests extends ESIntegTestCase {
         @Override
         public ConfService createHttpService() {
             return () -> {
-                List<DiscoveryNode> list = new ArrayList<>();
+                List<TransportAddress> list = new ArrayList<>();
                 nodes.forEach((k, v) -> {
-                    list.add(v);
+                    list.add(v.getAddress());
                 });
                 return list;
             };
