@@ -42,6 +42,9 @@ discovery.conf.apollo.namespace:
 
 # apollo: the property name
 discovery.conf.apollo.key:
+
+# the initial set of master-eligible nodes
+cluster.initial_master_nodes:
 ```
 
 Test
