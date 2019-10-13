@@ -1,4 +1,4 @@
-discovery.zen.hosts_provider: conf-apollo
+discovery.seed_providers: conf-apollo
 discovery.conf.apollo.meta: http://106.12.25.204:8080
 discovery.conf.apollo.app_id: 65533
 discovery.conf.apollo.namespace: public.ess

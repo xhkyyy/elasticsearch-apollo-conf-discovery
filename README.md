@@ -29,7 +29,7 @@ bin/elasticsearch-plugin --verbose install [url]
 elasticsearch.yml:
 
 ```yaml
-discovery.zen.hosts_provider: conf-apollo
+discovery.seed_providers: conf-apollo
 
 # apollo: the apollo.meta of the config
 discovery.conf.apollo.meta:
