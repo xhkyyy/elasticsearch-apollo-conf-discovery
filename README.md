@@ -8,7 +8,7 @@ Versions
 
 Plugin branch | ES version | Release
 -----------|-----------|-----------
-master | 7.3.x | 
+master | 7.3.x | [elasticsearch-apollo-conf-discovery-v7.3.2](https://github.com/xhkyyy/elasticsearch-apollo-conf-discovery/releases/tag/v7.3.2)
 6.2.x| 6.2.x | [elasticsearch-apollo-conf-discovery-v6.2.2](https://github.com/xhkyyy/elasticsearch-apollo-conf-discovery/releases/tag/v6.2.2)
 
 Prerequisites
