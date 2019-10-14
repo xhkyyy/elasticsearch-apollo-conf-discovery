@@ -1,5 +1,20 @@
 discovery.zen.hosts_provider: conf-apollo
-discovery.conf.apollo.meta: http://106.12.25.204:8080
-discovery.conf.apollo.app_id: 65533
-discovery.conf.apollo.namespace: public.ess
-discovery.conf.apollo.key: ess_seed_list
+
+# apollo: the apollo.meta of the config
+discovery.conf.apollo.meta:
+
+# apollo: the app.id of the config
+discovery.conf.apollo.app_id:
+
+# apollo: the namespace of the config
+discovery.conf.apollo.namespace:
+
+# apollo: the property name
+discovery.conf.apollo.key:
+# ================= test ==============================
+# discovery.zen.hosts_provider: conf-apollo
+# discovery.conf.apollo.meta: http://106.12.25.204:8080
+# discovery.conf.apollo.app_id: 65533
+# discovery.conf.apollo.namespace: public.ess
+# discovery.conf.apollo.key: ess_seed_list
+
