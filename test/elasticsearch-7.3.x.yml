@@ -14,6 +14,10 @@ discovery.conf.apollo.key:
 
 # the initial set of master-eligible nodes
 cluster.initial_master_nodes: ["node-11"]
+
+
+
+
 # ================= test ==============================
 # discovery.seed_providers: conf-apollo
 # discovery.conf.apollo.meta: http://106.12.25.204:8080
