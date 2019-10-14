@@ -20,13 +20,13 @@ Prerequisites
 How To Use
 --------
 
-installation:
+***installation:***
 
 ```sh
 bin/elasticsearch-plugin --verbose install [url]
 ```
 
-elasticsearch.yml:
+***elasticsearch.yml:***
 
 + [elasticsearch-7.3.x.yml](test/elasticsearch-7.3.x.yml)
 
