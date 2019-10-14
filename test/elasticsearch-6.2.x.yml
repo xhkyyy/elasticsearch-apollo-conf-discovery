@@ -11,6 +11,10 @@ discovery.conf.apollo.namespace:
 
 # apollo: the property name
 discovery.conf.apollo.key:
+
+
+
+
 # ================= test ==============================
 # discovery.zen.hosts_provider: conf-apollo
 # discovery.conf.apollo.meta: http://106.12.25.204:8080
